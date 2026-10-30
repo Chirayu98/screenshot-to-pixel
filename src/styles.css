@@ -55,7 +55,7 @@
   --border: oklch(0.26 0 0); /* #262626 */
   --input: oklch(0.26 0 0);
   --ring: oklch(0.66 0.22 35);
-  --hero: oklch(0.645 0.235 33); /* #FF3D0A */
+  --hero: #FF300B;
   --hero-foreground: oklch(0.12 0 0);
   --glow: radial-gradient(60% 80% at 50% 110%, oklch(0.66 0.22 35 / 0.75), oklch(0.5 0.2 30 / 0.25) 45%, transparent 75%);
 }
