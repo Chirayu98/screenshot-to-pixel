@@ -12,9 +12,9 @@ export const profile = {
   phone: "+91 79903 36208",
   phoneHref: "tel:+917990336208",
   resumeUrl: resume.url,
-  linkedin: null as string | null,
-  github: null as string | null,
-  photoUrl: "/profile.jpg",
+  linkedin: "https://www.linkedin.com/in/chirayu-sharma-5b7459262?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+  github: "https://github.com/Chirayu98",
+  photoUrl: "/profile.jpg?v=2",
   heroPhotoUrl: "/hero-illustration.png?v=7",
 };
 
@@ -242,6 +242,7 @@ export const experience = [
     period: "Oct 2025 — Mar 2026",
     roles: ["MERN Stack Intern"],
     desc: "Six-month on-site internship with hands-on work across MongoDB, Express, React and Node.js.",
+    certificateUrl: "/certificates/sparks-to-ideas-certificate.pdf",
   },
   {
     org: "The Knowledge Academy",
@@ -327,5 +328,17 @@ export const faqs = [
   {
     q: "Can I see your resume or project walkthroughs?",
     a: "You can download my resume from this page. For project walkthroughs, email me — I can talk through approach and design while keeping employer data confidential.",
+  },
+];
+
+export const awards = [
+  {
+    title: "Graphic Lead Recognition",
+    organization: "CESA · Indus University",
+    year: "2025–2026",
+    description:
+      "Recognized for my valuable contribution as Graphic Lead of the CESA Core Committee.",
+    image: "/awards/award-photo.jpeg",
+    video: "/awards/award-ceremony.mp4",
   },
 ];

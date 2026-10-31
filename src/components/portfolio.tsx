@@ -1,9 +1,24 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { ArrowDown, ArrowUpRight, Menu, Plus, X } from "lucide-react";
-import { profile, stats, services, projects, experience, skills, process, faqs, type Project } from "@/content/portfolio";
+import { ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, Bell, Briefcase, CheckCircle2, MapPin, Menu, Plus, X } from "lucide-react";
+
+import {
+  profile,
+  stats,
+  services,
+  projects,
+  experience,
+  skills,
+  process,
+  faqs,
+  awards,
+  type Project,
+} from "@/content/portfolio";
+
 import { WaterRippleEffect } from "@/components/WaterRippleEffect";
 import { InteractiveGridPattern } from "@/components/ui/InteractiveGridPattern";
 import { LampEffect } from "@/components/ui/LampEffect";
+import { LiquidOcean } from "@/components/ui/liquid-ocean";
+import { WaveGridBackground } from "@/components/ui/wave-grid-background";
 
 const nav = [
   { label: "About", href: "#about" },
@@ -69,11 +84,10 @@ function Header() {
   return (
     <header className="fixed inset-x-0 top-3 z-50 px-3 transition-all duration-300 md:top-5 md:px-8">
       <div
-        className={`mx-auto flex h-14 max-w-6xl items-center justify-between rounded-full px-4 transition-all duration-300 sm:px-6 ${
-          solid
-            ? "border border-border/80 bg-background/85 text-foreground shadow-2xl backdrop-blur-xl"
-            : "border border-black/10 bg-white/20 text-hero-foreground shadow-sm backdrop-blur-md"
-        }`}
+        className={`mx-auto flex h-14 max-w-6xl items-center justify-between rounded-full px-4 transition-all duration-300 sm:px-6 ${solid
+          ? "border border-border/80 bg-background/85 text-foreground shadow-2xl backdrop-blur-xl"
+          : "border border-black/10 bg-white/20 text-hero-foreground shadow-sm backdrop-blur-md"
+          }`}
       >
         {/* Brand identity & Status badge */}
         <a href="#top" className="flex items-center gap-2.5 tracking-tight">
@@ -85,11 +99,10 @@ function Header() {
             <span className="text-xs font-medium opacity-60">/ Data Analyst</span>
           </span>
           <span
-            className={`hidden lg:inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[11px] font-semibold tracking-wide ${
-              solid
-                ? "border border-emerald-500/20 bg-emerald-500/10 text-emerald-400"
-                : "border border-black/15 bg-black/5 text-emerald-800"
-            }`}
+            className={`hidden lg:inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[11px] font-semibold tracking-wide ${solid
+              ? "border border-emerald-500/20 bg-emerald-500/10 text-emerald-400"
+              : "border border-black/15 bg-black/5 text-emerald-800"
+              }`}
           >
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
             Available
@@ -104,15 +117,14 @@ function Header() {
               <a
                 key={n.href}
                 href={n.href}
-                className={`rounded-full px-3.5 py-1.5 text-xs font-semibold tracking-wide transition-all ${
-                  isActive
-                    ? solid
-                      ? "bg-primary text-primary-foreground shadow-sm"
-                      : "bg-black text-white shadow-sm"
-                    : solid
+                className={`rounded-full px-3.5 py-1.5 text-xs font-semibold tracking-wide transition-all ${isActive
+                  ? solid
+                    ? "bg-primary text-primary-foreground shadow-sm"
+                    : "bg-black text-white shadow-sm"
+                  : solid
                     ? "text-muted-foreground hover:text-foreground hover:bg-white/5"
                     : "opacity-80 hover:opacity-100 hover:bg-black/5"
-                }`}
+                  }`}
               >
                 {n.label}
               </a>
@@ -124,19 +136,17 @@ function Header() {
         <div className="flex items-center gap-2.5">
           <a
             href="#contact"
-            className={`btn-pill hidden sm:inline-flex !py-2 !px-4 text-xs font-semibold transition-all hover:scale-105 ${
-              solid
-                ? "bg-primary text-primary-foreground shadow-md shadow-primary/20"
-                : "bg-black text-white shadow-md shadow-black/15"
-            }`}
+            className={`btn-pill hidden sm:inline-flex !py-2 !px-4 text-xs font-semibold transition-all hover:scale-105 ${solid
+              ? "bg-primary text-primary-foreground shadow-md shadow-primary/20"
+              : "bg-black text-white shadow-md shadow-black/15"
+              }`}
           >
             Let's Connect <ArrowUpRight className="h-3.5 w-3.5" />
           </a>
 
           <button
-            className={`flex h-9 w-9 items-center justify-center rounded-full transition md:hidden ${
-              solid ? "bg-white/10 hover:bg-white/15" : "bg-black/10 hover:bg-black/15"
-            }`}
+            className={`flex h-9 w-9 items-center justify-center rounded-full transition md:hidden ${solid ? "bg-white/10 hover:bg-white/15" : "bg-black/10 hover:bg-black/15"
+              }`}
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             aria-controls="mobile-menu"
@@ -402,18 +412,45 @@ function About() {
             />
 
             <div className="absolute bottom-4 left-4 right-4 rounded-xl border border-white/10 bg-black/75 p-4 backdrop-blur-md">
-              <p className="text-sm font-semibold text-white">
-                {profile.name}
-              </p>
-              <p className="mt-1 text-xs text-white/70">
-                Data Analyst | Power BI Developer
-              </p>
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-semibold text-white">
+                    {profile.name}
+                  </p>
+                  <p className="mt-1 text-xs text-white/70">
+                    Data Analyst | Power BI Developer
+                  </p>
+                </div>
+                {profile.linkedin && (
+                  <a
+                    href={profile.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Chirayu Sharma LinkedIn profile"
+                    className="flex h-8 w-8 items-center justify-center rounded-full border border-white/15 bg-white/10 text-white/90 backdrop-blur transition-all hover:bg-primary hover:border-primary hover:text-primary-foreground hover:scale-105"
+                  >
+                    <ArrowUpRight className="h-4 w-4" />
+                  </a>
+                )}
+              </div>
             </div>
           </div>
 
-          <div className="mt-6 flex items-center gap-2 text-sm text-muted-foreground">
-            <span className="h-2 w-2 rounded-full bg-primary" />
-            Based in {profile.location}
+          <div className="mt-6 flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
+            <div className="flex items-center gap-2">
+              <span className="h-2 w-2 rounded-full bg-primary" />
+              Based in {profile.location}
+            </div>
+            {profile.linkedin && (
+              <a
+                href={profile.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-xs font-mono text-primary transition-colors hover:underline"
+              >
+                LinkedIn Profile <ArrowUpRight className="h-3 w-3" />
+              </a>
+            )}
           </div>
         </div>
 
@@ -630,6 +667,7 @@ function CaseStudy({
             </p>
           )}
 
+
           {/* POWER BI DASHBOARD GALLERY */}
           {project.gallery && project.gallery.length > 0 && (
             <section className="mt-16">
@@ -649,46 +687,16 @@ function CaseStudy({
                 </p>
               </div>
 
-              <div className="grid gap-6 md:grid-cols-2">
-                {project.gallery.map((item, index) => (
-                  <a
-                    key={item.title}
-                    href={item.image}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="group overflow-hidden rounded-xl border border-border bg-background transition-all duration-300 hover:border-primary/50"
-                  >
-                    <div className="overflow-hidden bg-muted">
-                      <img
-                        src={item.image}
-                        alt={item.alt}
-                        loading="lazy"
-                        className="aspect-video w-full object-contain transition-transform duration-500 group-hover:scale-[1.02]"
-                      />
-                    </div>
-
-                    <div className="flex items-center justify-between gap-3 p-4">
-                      <div>
-                        <p className="text-xs text-muted-foreground">
-                          DASHBOARD 0{index + 1}
-                        </p>
-
-                        <h4 className="mt-1 font-medium">
-                          {item.title}
-                        </h4>
-                      </div>
-
-                      <ArrowUpRight className="h-5 w-5 shrink-0 text-primary transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-                    </div>
-                  </a>
-                ))}
-              </div>
+              {/* Interactive Dashboard Gallery Carousel */}
+              <CaseStudyGallery images={project.gallery} />
 
               <p className="mt-5 text-xs text-muted-foreground">
-                Select any dashboard to view the full-size screenshot.
+                Click any dashboard thumbnail or use left/right arrows to inspect the full report suite.
               </p>
+
             </section>
           )}
+
 
           {/* PROJECT DETAILS */}
           <div className="mt-16 grid gap-10 md:grid-cols-2">
@@ -715,6 +723,104 @@ function CaseStudy({
 }
 
 
+function CaseStudyGallery({ images }: { images: { title: string; image: string; alt: string }[] }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const prev = () => setCurrentIndex((i) => (i === 0 ? images.length - 1 : i - 1));
+  const next = () => setCurrentIndex((i) => (i === images.length - 1 ? 0 : i + 1));
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") prev();
+      if (e.key === "ArrowRight") next();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [images.length]);
+
+  const current = images[currentIndex] || images[0];
+
+  return (
+    <div className="space-y-4">
+      {/* Main Image Stage */}
+      <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl border border-border bg-black/60 shadow-2xl">
+        <img
+          key={current.image}
+          src={current.image}
+          alt={current.alt}
+          className="h-full w-full object-contain transition-opacity duration-300"
+        />
+
+        {/* Top Floating Badge */}
+        <div className="pointer-events-none absolute inset-x-3 top-3 flex items-center justify-between sm:inset-x-4 sm:top-4">
+          <div className="pointer-events-auto flex items-center gap-2 rounded-full border border-white/10 bg-black/75 px-3.5 py-1.5 text-xs text-white/90 backdrop-blur-md">
+            <span className="font-mono text-primary font-semibold">
+              {String(currentIndex + 1).padStart(2, "0")} / {String(images.length).padStart(2, "0")}
+            </span>
+            <span className="text-white/40">•</span>
+            <span className="truncate max-w-[180px] sm:max-w-md font-medium">{current.title}</span>
+          </div>
+
+          <a
+            href={current.image}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="pointer-events-auto inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-black/75 px-3 py-1.5 text-xs font-medium text-white/80 backdrop-blur-md transition-colors hover:bg-black/90 hover:text-white"
+          >
+            <span>Full Resolution</span>
+            <ArrowUpRight className="h-3.5 w-3.5" />
+          </a>
+        </div>
+
+        {/* Navigation Arrows */}
+        <button
+          onClick={prev}
+          aria-label="Previous dashboard"
+          className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full border border-white/15 bg-black/75 p-2.5 text-white/90 backdrop-blur-md transition-all hover:scale-110 hover:bg-black hover:text-white"
+        >
+          <ArrowLeft className="h-5 w-5" />
+        </button>
+        <button
+          onClick={next}
+          aria-label="Next dashboard"
+          className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full border border-white/15 bg-black/75 p-2.5 text-white/90 backdrop-blur-md transition-all hover:scale-110 hover:bg-black hover:text-white"
+        >
+          <ArrowRight className="h-5 w-5" />
+        </button>
+      </div>
+
+      {/* Thumbnails Row */}
+      <div className="flex gap-3 overflow-x-auto pb-2 pt-1 no-scrollbar">
+        {images.map((item, idx) => {
+          const isActive = idx === currentIndex;
+          return (
+            <button
+              key={item.image}
+              onClick={() => setCurrentIndex(idx)}
+              className={`group relative flex-shrink-0 overflow-hidden rounded-lg border transition-all duration-200 ${
+                isActive
+                  ? "border-primary ring-2 ring-primary/40 scale-[1.02]"
+                  : "border-border/60 opacity-60 hover:opacity-100 hover:border-foreground/30"
+              }`}
+            >
+              <img
+                src={item.image}
+                alt={item.alt}
+                className="h-16 w-24 object-cover sm:h-20 sm:w-32"
+              />
+              <span className="absolute bottom-1 right-1 rounded bg-black/80 px-1.5 py-0.5 text-[9px] font-mono text-white/90">
+                0{idx + 1}
+              </span>
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+
+
 function Work() {
   const [active, setActive] = useState<Project | null>(null);
   return (
@@ -727,9 +833,194 @@ function Work() {
       <div className="space-y-24 md:space-y-32">
         {projects.map((p, i) => (
           <article key={p.id} className="reveal grid items-center gap-8 md:grid-cols-12 md:gap-12">
-            <button onClick={() => setActive(p)} aria-label={`Open ${p.title} case study`} className={`group overflow-hidden rounded-xl border border-border md:col-span-7 ${i % 2 ? "md:order-2" : ""}`}>
-              <img src={p.image} alt={p.alt} width={1600} height={1008} loading="lazy" className="w-full transition-transform duration-700 group-hover:scale-[1.03]" />
-            </button>
+            {p.id === "plant-machinery" ? (
+              <div
+                onClick={() => setActive(p)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && setActive(p)}
+                aria-label={`Open ${p.title} case study`}
+                className={`group relative h-[480px] sm:h-[510px] lg:h-[530px] w-full overflow-hidden rounded-2xl border border-white/10 bg-black shadow-2xl transition-all duration-500 hover:border-cyan-400/50 cursor-pointer md:col-span-7 ${
+                  i % 2 ? "md:order-2" : ""
+                }`}
+              >
+                <LiquidOcean
+                  className="h-full w-full"
+                  accentColor={0x00d2ff}
+                  gridColor={0x1f2937}
+                  backgroundColor={0x000000}
+                >
+                  <div className="relative flex h-full w-full flex-col justify-between p-6 sm:p-8">
+                    {/* Top Section */}
+                    <div className="flex flex-wrap items-start justify-between gap-4">
+                      <div>
+                        <p className="text-[11px] font-semibold tracking-[0.25em] text-cyan-400 uppercase">
+                          PLANT & MACHINERY
+                        </p>
+                        <p className="mt-1 text-xs font-mono tracking-widest text-white/90 uppercase">
+                          OPERATIONAL INTELLIGENCE
+                        </p>
+                      </div>
+
+                      {/* Floating Glass Badges */}
+                      <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                        {["POWER BI", "DAX", "POWER QUERY", "EXCEL"].map((badge) => (
+                          <span
+                            key={badge}
+                            className="rounded-md border border-white/15 bg-black/60 px-2.5 py-1 text-[10px] font-mono font-medium tracking-wider text-cyan-200/95 backdrop-blur-md transition-colors group-hover:border-cyan-400/30"
+                          >
+                            {badge}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Center Section */}
+                    <div className="my-auto py-4">
+                      <div className="inline-flex items-center gap-2 rounded-full border border-cyan-500/20 bg-cyan-950/40 px-3 py-1 text-[11px] font-mono text-cyan-300 backdrop-blur-md mb-3">
+                        <span className="relative flex h-2 w-2">
+                          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-400 opacity-75"></span>
+                          <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan-500"></span>
+                        </span>
+                        Live Telemetry Simulation
+                      </div>
+                      <h4 className="text-2xl sm:text-3xl lg:text-4xl font-medium tracking-tight text-white drop-shadow-md">
+                        Plant & Machinery Analytics
+                      </h4>
+                      <p className="mt-2 max-w-md text-xs sm:text-sm text-white/70 line-clamp-2">
+                        Interactive 3D operational intelligence mapping equipment utilization, compliance, and idle telemetry across jobsites.
+                      </p>
+                    </div>
+
+                    {/* Bottom Information Glass Card */}
+                    <div className="grid grid-cols-3 divide-x divide-white/10 rounded-xl border border-white/15 bg-black/70 p-3.5 backdrop-blur-md transition-all group-hover:border-cyan-500/40">
+                      <div className="px-2 text-center sm:px-3 sm:text-left">
+                        <p className="text-base sm:text-lg font-semibold text-white tracking-tight">1,300+</p>
+                        <p className="text-[10px] sm:text-xs text-white/60 font-mono tracking-wide">Equipment</p>
+                      </div>
+                      <div className="px-2 text-center sm:px-3 sm:text-left">
+                        <p className="text-base sm:text-lg font-semibold text-cyan-300 tracking-tight">61</p>
+                        <p className="text-[10px] sm:text-xs text-white/60 font-mono tracking-wide">Construction Sites</p>
+                      </div>
+                      <div className="px-2 text-center sm:px-3 sm:text-left">
+                        <p className="text-base sm:text-lg font-semibold text-white tracking-tight">5</p>
+                        <p className="text-[10px] sm:text-xs text-white/60 font-mono tracking-wide">Analytics Views</p>
+                      </div>
+                    </div>
+                  </div>
+                </LiquidOcean>
+              </div>
+            ) : p.id === "jobsy" ? (
+              <div
+                onClick={() => setActive(p)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && setActive(p)}
+                aria-label={`Open ${p.title} case study`}
+                className={`group relative h-[520px] w-full overflow-hidden rounded-xl border border-border shadow-2xl transition-all duration-500 hover:border-blue-400/50 cursor-pointer md:col-span-7 ${
+                  i % 2 ? "md:order-2" : ""
+                }`}
+              >
+                <WaveGridBackground
+                  colorBase="#ffffff"
+                  colorHigh="#0055ff"
+                >
+                  <div className="relative flex h-full w-full items-center justify-center p-4 sm:p-6">
+                    {/* Floating Top-Left Card: New Job Opportunity */}
+                    <div className="absolute left-3 top-3 sm:left-6 sm:top-6 flex items-center gap-2.5 rounded-xl border border-blue-400/25 bg-slate-950/80 px-3 py-2 text-xs text-white shadow-xl backdrop-blur-md transition-transform duration-300 group-hover:-translate-y-0.5">
+                      <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-blue-500/20 text-blue-400 border border-blue-400/30">
+                        <Bell className="h-3.5 w-3.5" />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-1.5">
+                          <span className="font-semibold text-white">New Job Opportunity</span>
+                          <span className="inline-block h-1.5 w-1.5 rounded-full bg-blue-400" />
+                        </div>
+                        <p className="text-[10px] text-slate-300 font-mono">Express Delivery Fleet</p>
+                      </div>
+                    </div>
+
+                    {/* Floating Top-Right Card: Delivery Executive / Full-Time */}
+                    <div className="absolute right-3 top-3 sm:right-6 sm:top-6 flex items-center gap-2.5 rounded-xl border border-blue-400/25 bg-slate-950/80 px-3.5 py-2 text-xs text-white shadow-xl backdrop-blur-md transition-transform duration-300 group-hover:-translate-y-0.5">
+                      <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-blue-500/20 text-blue-400 border border-blue-400/30">
+                        <Briefcase className="h-3.5 w-3.5" />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <span className="font-semibold text-white">Delivery Executive</span>
+                          <span className="rounded bg-blue-600/40 border border-blue-400/40 px-1.5 py-0.5 text-[9px] font-mono text-blue-200 uppercase font-medium">
+                            Full-Time
+                          </span>
+                        </div>
+                        <p className="text-[10px] text-slate-300 font-mono">Urban Logistics Network</p>
+                      </div>
+                    </div>
+
+                    {/* Central Jobsy Branding Card */}
+                    <div className="flex flex-col items-center text-center rounded-2xl border border-blue-400/30 bg-slate-950/85 px-7 py-6 shadow-2xl backdrop-blur-xl transition-all duration-300 group-hover:border-blue-400/60 group-hover:scale-[1.02]">
+                      <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-600 text-white shadow-lg shadow-blue-500/40 border border-blue-400/40">
+                        <span className="text-xl font-black tracking-tight">J</span>
+                      </div>
+                      <h4 className="text-3xl sm:text-4xl font-bold tracking-tight text-white drop-shadow-sm">
+                        Jobsy
+                      </h4>
+                      <p className="mt-1 text-[11px] sm:text-xs font-mono font-semibold tracking-[0.2em] text-blue-300 uppercase">
+                        DELIVERY JOBS PLATFORM
+                      </p>
+                      <div className="mt-3.5 flex items-center gap-1.5 rounded-full border border-blue-400/20 bg-blue-950/60 px-3 py-1 text-[10px] font-mono text-blue-200">
+                        <span className="relative flex h-2 w-2">
+                          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-400 opacity-75"></span>
+                          <span className="relative inline-flex h-2 w-2 rounded-full bg-blue-500"></span>
+                        </span>
+                        Connecting Delivery Talent & Employers
+                      </div>
+                    </div>
+
+                    {/* Floating Bottom-Left Card: Application Status: Submitted */}
+                    <div className="absolute left-3 bottom-3 sm:left-6 sm:bottom-6 flex items-center gap-2.5 rounded-xl border border-blue-400/25 bg-slate-950/80 px-3 py-2 text-xs text-white shadow-xl backdrop-blur-md transition-transform duration-300 group-hover:translate-y-0.5">
+                      <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-400/30">
+                        <CheckCircle2 className="h-3.5 w-3.5" />
+                      </div>
+                      <div>
+                        <p className="text-[10px] text-slate-300 font-mono">Application Status</p>
+                        <div className="flex items-center gap-1.5">
+                          <span className="font-semibold text-emerald-300">Submitted</span>
+                          <span className="text-[10px] text-slate-400 font-mono">• In Review</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Floating Bottom-Right Card: Delivery Hub & Route Matching */}
+                    <div className="absolute right-3 bottom-3 sm:right-6 sm:bottom-6 hidden sm:flex items-center gap-2.5 rounded-xl border border-blue-400/25 bg-slate-950/80 px-3.5 py-2 text-xs text-white shadow-xl backdrop-blur-md transition-transform duration-300 group-hover:translate-y-0.5">
+                      <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-blue-500/20 text-blue-400 border border-blue-400/30">
+                        <MapPin className="h-3.5 w-3.5" />
+                      </div>
+                      <div>
+                        <span className="font-semibold text-white">Smart Hub Matching</span>
+                        <p className="text-[10px] text-slate-300 font-mono">Geo-routed Hiring</p>
+                      </div>
+                    </div>
+                  </div>
+                </WaveGridBackground>
+              </div>
+            ) : (
+              <button
+                onClick={() => setActive(p)}
+                aria-label={`Open ${p.title} case study`}
+                className={`group overflow-hidden rounded-xl border border-border md:col-span-7 ${
+                  i % 2 ? "md:order-2" : ""
+                }`}
+              >
+                <img
+                  src={p.image}
+                  alt={p.alt}
+                  width={1600}
+                  height={1008}
+                  loading="lazy"
+                  className="w-full transition-transform duration-700 group-hover:scale-[1.03]"
+                />
+              </button>
+            )}
             <div className="md:col-span-5">
               <p className="text-sm text-muted-foreground">{p.index} — {p.tags}</p>
               <h3 className="mt-4 text-3xl font-medium tracking-tight md:text-4xl">{p.title}</h3>
@@ -799,12 +1090,133 @@ function Experience() {
             </div>
             <ul className="mt-2 space-y-1">{e.roles.map((r, i) => <li key={r} className={`text-sm ${i === 0 ? "text-primary" : "text-muted-foreground"}`}>{r}</li>)}</ul>
             <p className="mt-4 leading-relaxed text-muted-foreground">{e.desc}</p>
+            {e.certificateUrl && (
+              <a
+                href={e.certificateUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-5 inline-flex items-center gap-2 rounded-full border border-primary/40 px-5 py-2.5 text-sm font-medium text-primary transition-all hover:bg-primary hover:text-primary-foreground"
+              >
+                View Internship Certificate
+                <ArrowUpRight className="h-4 w-4" />
+              </a>
+            )}
           </div>
         ))}
       </div>
       <div className="reveal mt-10 border-t border-border pt-8 text-sm text-muted-foreground">
         <span className="text-foreground">Education —</span> B.E. Computer Engineering, Indus University · 2022–2026 · CGPA 9.05
       </div>
+    </section>
+  );
+}
+
+
+function Awards() {
+  return (
+    <section
+      id="awards"
+      className="container-x scroll-mt-20 py-24 md:py-32"
+    >
+      <div className="reveal mb-16 text-center">
+        <Label>Recognition</Label>
+
+        <h2 className="text-4xl font-medium tracking-tight md:text-6xl">
+          Moments of <span className="serif-i">achievement.</span>
+        </h2>
+
+        <p className="mx-auto mt-5 max-w-xl text-sm text-muted-foreground md:text-base">
+          Celebrating milestones, contributions and experiences
+          throughout my journey.
+        </p>
+      </div>
+
+      {awards.map((award) => (
+        <div
+          key={award.title}
+          className="reveal mx-auto grid max-w-6xl items-start gap-8 md:grid-cols-2 md:gap-10"
+        >
+          {/* Award Photograph & Details */}
+          <div className="overflow-hidden rounded-2xl border border-border bg-card">
+            <a
+              href={award.image}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="View award photograph in full size"
+              className="group/image relative block aspect-video w-full cursor-zoom-in overflow-hidden bg-black"
+            >
+              <img
+                src={award.image}
+                alt="Chirayu Sharma's Graphic Lead award from CESA"
+                className="h-full w-full object-cover object-center transition-transform duration-500 group-hover/image:scale-105"
+                loading="lazy"
+              />
+
+              <span className="absolute bottom-4 right-4 rounded-full bg-black/75 px-4 py-2 text-xs text-white opacity-0 backdrop-blur transition-opacity duration-300 group-hover/image:opacity-100">
+                View Full Image ↗
+              </span>
+            </a>
+
+            <div className="p-6 md:p-8">
+              <span className="text-xs uppercase tracking-[0.2em] text-primary">
+                Award Recognition
+              </span>
+
+              <h3 className="mt-3 text-2xl font-medium">
+                {award.title}
+              </h3>
+
+              <p className="mt-2 text-sm text-muted-foreground">
+                {award.organization} · {award.year}
+              </p>
+
+              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                {award.description}
+              </p>
+
+              <a
+                href={award.image}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-primary transition-colors hover:opacity-75"
+              >
+                View Award Photograph
+                <ArrowUpRight className="h-4 w-4" />
+              </a>
+            </div>
+          </div>
+
+          {/* Award Ceremony Video */}
+          <div>
+            <div className="mb-5">
+              <span className="text-xs uppercase tracking-[0.2em] text-primary">
+                Behind the Moment
+              </span>
+
+              <h3 className="mt-3 text-2xl font-medium">
+                The Award Ceremony
+              </h3>
+
+              <p className="mt-2 text-sm text-muted-foreground">
+                A glimpse of the moment behind this achievement.
+              </p>
+            </div>
+
+            <div className="aspect-video w-full overflow-hidden rounded-2xl border border-border bg-black">
+              <video
+                controls
+                playsInline
+                preload="metadata"
+                poster={award.image}
+                className="h-full w-full object-contain"
+              >
+                <source src={award.video} type="video/mp4" />
+                Your browser does not support video playback.
+              </video>
+            </div>
+          </div>
+        </div>
+      ))}
     </section>
   );
 }
@@ -866,6 +1278,16 @@ function Contact() {
             >
               Get in Touch <ArrowUpRight className="h-4 w-4" />
             </a>
+            {profile.linkedin && (
+              <a
+                href={profile.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                className="btn-pill border border-foreground/30 hover:border-primary hover:text-primary transition"
+              >
+                LinkedIn <ArrowUpRight className="h-4 w-4" />
+              </a>
+            )}
             <a
               href={profile.resumeUrl}
               download="Chirayu_Sharma_Resume.pdf"
@@ -948,7 +1370,14 @@ export function Portfolio() {
       <a href="#about" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-primary focus:p-2">Skip to content</a>
       <Header />
       <main>
-        <Hero /><About /><Services /><Work /><CtaBand /><Experience /><Skills /><Process /><Contact /><Faq />
+        <Hero />
+        <About />
+        <Services />
+        <Work />
+        <CtaBand />
+        <Experience />
+        <Awards />
+        <Skills />
       </main>
       <Footer />
     </>
